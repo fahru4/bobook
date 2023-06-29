@@ -1,0 +1,68 @@
+@extends('layouts.administrator')
+
+@section('content')
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Master Member</h6>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('admin-member-update',$data->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                        <label for="name" class="control-label">FullName</label>
+                        <input id="name" type="text" class="form-control" name="name" value="{{$data->name}}"
+                        placeholder="Enter Fullname" required>
+
+                        @if ($errors->has('title'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('title') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="form-group{{ $errors->has('author') ? ' has-error' : '' }}">
+                        <label for="username" class="control-label">Username</label>
+                        <input id="username" type="text" class="form-control" name="username" value="{{$data->username}}" placeholder="Enter username" required>
+
+                        @if ($errors->has('username'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('username') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+
+                    <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
+                        <label for="photo" class="control-label">Photo</label>
+                        <input id="photo" type="file" class="form-control" name="photo" placeholder="Enter photo" required>
+                        @if($data->photo)
+                            <img src="{{ asset('storage/member/'.$data->photo) }}" style="height: 50px;width:100px; margin-top:5px;">
+                        @else 
+                            <span>No photo found!</span>
+                        @endif
+                        @if ($errors->has('photo'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('photo') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+                    <input type="hidden" name="action" value="update">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-danger">
+                        Reset
+                    </button>
+                    <a href="#" class="btn btn-warning pull-right">Back</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+@endsection
