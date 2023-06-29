@@ -36,39 +36,6 @@
         </div>
     </div>
 
-    <div class="modal" id="EditArticleModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Article Edit</h4>
-                    <button type="button" class="close modelClose" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-                        <strong>Success!</strong>Article was added successfully.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div id="EditArticleModalBody">
-                         
-                    </div>
-                </div>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="SubmitEditArticleForm">Update</button>
-                    <button type="button" class="btn btn-danger modelClose" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 <!-- /.container-fluid -->
