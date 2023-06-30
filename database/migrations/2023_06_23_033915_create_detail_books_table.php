@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('detail_books', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('transaction_id');
-            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('transaction_id')->references('id')
+            ->on('transactions')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')
+            ->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

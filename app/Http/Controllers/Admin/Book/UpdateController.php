@@ -58,12 +58,12 @@ class UpdateController extends Controller
                 }
 
             } catch (\Throwable $th) {
-                Log::info('Failed created book = '.$th);
+                Log::info('Failed updated book = '.$th);
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failed '.$th);
+                return redirect()->back()->with('error', 'Failed updated book '.$th);
             }
                 DB::commit();
-                return redirect()->route('admin-book-index')->with('success','Book Successfully Created');
+                return redirect()->route('admin-book-index')->with('success','Book Successfully Updated');
             }
 
             return view('pages/admin/book/edit',compact('data'));

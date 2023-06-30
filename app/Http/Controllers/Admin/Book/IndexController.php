@@ -20,7 +20,7 @@ class IndexController extends Controller
                         // $btn = ';
                         // <button type="button" class="btn btn-success btn-sm" id="getBook" data-id="'.$row->id.'">Edit</button>';
                         $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" 
-                        data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Delete</a>';
+                        data-original-title="Delete" class="btn btn-danger deleteBook">Delete</a>';
     
                             return $btn;
                     })
@@ -49,11 +49,6 @@ class IndexController extends Controller
 
             ]);
         }
-        return response()->json([
-            'status' => 400,
-            'message' => 'Your failed to delete.',
-            'error' => true,
-        ]);
      
         return response()->json(['success'=>'Book deleted successfully.']);
     }

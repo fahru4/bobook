@@ -9,13 +9,15 @@ class Transaction extends Model
 {
     
     use HasFactory;
+    protected $casts = [
+        'approve' => 'boolean',
+      ];
+    // protected $guarded = [];
 
-    protected $guarded = [];
 
-
-    // protected $fillable = [
-    //     'user_id', 'member_id', 'book_id', 'approve', 'date_loan', 'date_return'
-    // ];
+    protected $fillable = [
+        'user_id', 'member_id', 'book_id', 'approve', 'date_loan', 'date_return'
+    ];
 
     public function member(){
         return $this->belongsTo('App\Models\Member','member_id');

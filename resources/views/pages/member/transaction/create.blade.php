@@ -97,7 +97,7 @@
                                     <td>{{ $data->title }}</td>
                                     <td>{{ $data->pub_year }}</td>
                                     <td>{{ $data->author }}</td>
-                                    <td>...</td>
+                            <td><img src="{{ asset('storage/book/'.$data->photo) }}" style="height: 50px;width:100px; margin-top:5px;"></td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -29,7 +29,7 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->route('admin-index');
+            return redirect()->route('admin-index')->with('success', 'Hi..Admin');
 
         }
         return back()->withInput($request->only('username', 'remember'));
@@ -51,10 +51,10 @@ class AuthController extends Controller
 
         if (Auth::guard('member')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))) {
 
-            return redirect()->route('admin-index');
+            return redirect()->route('member-index');
 
         }
-        return back()->withInput($request->only('username', 'remember'));
+        return back()->withInput($request->only('username', 'remember'))->with('error', 'Username or Wrong Password');
     }
 
     public function logout(Request $request){

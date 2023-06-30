@@ -53,7 +53,7 @@
 
                 columns: [
                             {data: 'title', name: 'title'},
-                            {data: 'author', name: 'author'},
+                            {data: 'pub_year', name: 'pub_year'},
                             {data: 'author', name: 'author'},
                             {
                                 data: 'span',
@@ -62,11 +62,13 @@
                                 searchable: false
                             },
                             {
-                                data: 'action',
-                                name: 'action',
-                                orderable: false,
-                                searchable: false
-                            },
+                        data: 'photo',
+                        name: "photo",
+                        render: function(data, type, full, meta) {
+                            return '<img src="{{ asset('storage/book/') }}/' + data +
+                                '" width="150px" height="150px">';
+                        }
+                    },
                 ]
                 
             });

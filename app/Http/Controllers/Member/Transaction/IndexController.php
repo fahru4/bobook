@@ -13,11 +13,19 @@ class IndexController extends Controller
 {
     public function index(Request $request){
         if ($request->ajax()) {
-            // $data = Book::select('books.*')->join('transactions','transactions.book_id','=','books.user_id')->where('user_id', $request->user_id)->first();
-            $data = Transaction::select('transactions.*', 'books.*')->join('books','transactions.book_id','=','books.id')
-        -> where('member_id', Auth::guard('member')->user()->id)->get();
+            $data = Transaction::select('transactions.*', 'books.*')
+            ->join('books','transactions.book_id','=','books.id')
+            ->where('transactions.member_id', Auth::guard('member')->user()->id)
+            ->orderBy('transactions.id', 'desc')
+            ->get();
+
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->editColumn('pub_year', function ($data) 
+                    {
+                        //change over here
+                        return date('D M Y',strtotime($data->pub_year));
+                    })
                     ->addColumn('span', function($data){
                                     if($data->approve == 0){
                                         return  '<span class="badge badge-info">No Approve</span>'; 

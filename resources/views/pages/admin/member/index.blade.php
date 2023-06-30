@@ -67,30 +67,6 @@
                 ]
             });
 
-            $('.modelClose').on('click', function(){
-            $('#EditArticleModal').hide();
-            });
-            var id;
-            $('body').on('click', '#getBook', function(e) {
-                // e.preventDefault();
-                $('.alert-danger').html('');
-                $('.alert-danger').hide();
-                id = $(this).data('id');
-                $.ajax({
-                   url: "book/edit/"+id+"",
-                    method: 'GET',
-                    dataType: 'html',
-                    // data: {
-                    //     id: id,
-                    // },
-                    success: function(result) {
-                        console.log(result);
-                        $('#EditArticleModalBody').html(result);
-                        $('#EditArticleModal').show();
-                    }
-                });
-            });
-
 
             $('body').on('click', '.deleteMember', function (){
             var member = $(this).data("id");
@@ -108,6 +84,8 @@
                     },
                     error: function (data) {
                         console.log('Error:', data);
+                        alert(data.error);
+
                     }
                 });
             }else{

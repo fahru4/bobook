@@ -53,9 +53,9 @@ class UpdateController extends Controller
                 }
 
             } catch (\Throwable $th) {
-                Log::info('Failed created member = '.$th);
+                Log::info('Failed updated member = '.$th);
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failed '.$th);
+                return redirect()->back()->with('error', 'Failed updated member'.$th);
             }
                 DB::commit();
                 return redirect()->route('admin-member-index')->with('success','Member Successfully Created');

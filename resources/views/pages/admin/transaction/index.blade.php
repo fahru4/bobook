@@ -20,9 +20,11 @@
                         <table class="table table-bordered data-table" id="transTable">
                         <thead>
                             <tr>
+                                <th>id</th>
                                 <th>Title</th>
                                 <th>Published</th>
                                 <th>Author</th>
+                                <th>Member</th>
                                 <th>Approve</th>
                                 <th>Photo</th>
                             </tr>
@@ -30,9 +32,11 @@
                         <tbody>
                             @foreach($data as $book)
                             <tr>
+                               <td>{{ $book->id }}</td>
                                <td>{{ $book->title }}</td>
                                <td>{{ $book->pub_year }}</td>
                                <td>{{ $book->author }}</td>
+                               <td>{{ $book->member()->first()->name }}</td>
                                <td> 
                                   <input data-id="{{$book->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
                                   data-toggle="toggle" data-on="IsApprove" data-off="NoApprovee" {{ $book->approve ? 'checked' : '' }}> 
@@ -68,38 +72,22 @@
                 dataType: "json",
                 url: 'transaction/status/'+ transaction_id,
                 data: {'approve': approve, 'transaction_id': transaction_id, 'stock':stock}, 
-                success: function(data){ 
+            //     success: function(data){ 
                     
+            //         console.log(data) 
+            // } 
+            success: function (data) {
                     console.log(data) 
-            } 
+
+                        alert(data.message);
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                        alert(data.error);
+
+                    }
          }); 
         }) 
-
-        // $('#transTable').DataTable({
-        //         pageLength: 5,
-        //         processing: true,
-        //         serverSide: true,
-        //         ajax: "{{ route('admin-transaction-index') }}",
-
-        //         columns: [
-        //                     {data: 'title', name: 'title'},
-        //                     {data: 'author', name: 'author'},
-        //                     {data: 'author', name: 'author'},
-        //                     {
-        //                         data: 'span',
-        //                         name: 'span',
-        //                         orderable: false,
-        //                         searchable: false
-        //                     },
-        //                     {
-        //                         data: 'action',
-        //                         name: 'action',
-        //                         orderable: false,
-        //                         searchable: false
-        //                     },
-        //         ]
-        //     });
-
         });
     </script>
 @endsection

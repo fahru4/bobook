@@ -24,7 +24,7 @@ class StoreController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->with('error', 'Failed');
+                return redirect()->back()->with('error', 'Validation required');
             }
 
             DB::beginTransaction();
@@ -41,9 +41,9 @@ class StoreController extends Controller
                 ]);
     
             } catch (\Throwable $th) {
-                Log::info('Failed created book = '.$th);
+                Log::info('Failed created member = '.$th);
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failed '.$th);
+                return redirect()->back()->with('error', 'Failed created member'.$th);
             }
                 DB::commit();
                 return redirect()->route('admin-member-index')->with('success','Member Successfully Created');

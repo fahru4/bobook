@@ -17,9 +17,11 @@ return new class extends Migration
             $table->id();
             $table->boolean('user_id')->default(0);
             $table->unsignedBigInteger('member_id');
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->foreign('member_id')->references('id')
+            ->on('members')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('book_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')
+            ->on('books')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('approve')->default(0);
             $table->date('date_loan')->nullable();
             $table->date('date_return')->nullable();

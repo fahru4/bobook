@@ -24,7 +24,7 @@ Route::post('create-book', [BookController::class, 'store']);
 Route::post('update-book/{code_book}', [BookController::class, 'update']);
 Route::post('delete-book/{code_book}', [BookController::class, 'delete']);
 
-Route::get('transaction/status/{id}', [AdminTransactionController::class, 'approve']);
+Route::post('transaction/status/{id}', [AdminTransactionController::class, 'approve']);
 Route::post('delete-book/{id}', [IndexController::class, 'clear']);
 
 

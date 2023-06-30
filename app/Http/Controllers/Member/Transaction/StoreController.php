@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Book;
 use App\Models\BookDetail;
+use App\Models\Member;
 use App\Models\Transaction;
 
 class StoreController extends Controller
@@ -35,7 +36,11 @@ class StoreController extends Controller
 
             DB::beginTransaction();
             try {
-                
+                $member = Member::where('id', Auth::guard('member')->user()->id)->first();
+                $transaction = Transaction::where('approve', 1)->where('member_id', $member->id)->exists();
+                if($transaction){
+                    return redirect()->route('member-transaction')->with('warning', 'You have borrow the book');
+                }
                 $data = Transaction::create([
                     'member_id'=> Auth::guard('member')->user()->id,
                     'book_id'=>$request->book_id,
@@ -51,7 +56,7 @@ class StoreController extends Controller
             } catch (\Throwable $th) {
                 Log::info('Failed to update transaksi 3 = '.$th);
                 DB::rollback();
-                return redirect()->back()->with('error', 'Failed');
+                return redirect()->back()->with('error', 'Failed Submit ');
             }
                 DB::commit();
                 return redirect()->route('member-transaction')->with('success','Book Successfully Booked');
