@@ -17,7 +17,7 @@ function setActive($uri, $output = "active")
   }
 }
 
-function setAffect($uri, $output = "mm-active")
+function setAffect($uri, $output = "show")
 {
   if (is_array($uri)) {
     foreach ($uri as $u) {
